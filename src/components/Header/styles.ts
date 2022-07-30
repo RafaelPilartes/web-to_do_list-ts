@@ -10,7 +10,7 @@ export const HeaderContainer = styled.header`
 
   background: ${({ theme }) => theme.colors['gray-700']};
 `
-export const NewTaskFormContainer = styled.form`
+export const NewTaskFormContainer = styled.article`
   width: 100%;
   padding: 0 2rem;
 
