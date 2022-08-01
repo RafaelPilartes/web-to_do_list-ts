@@ -13,10 +13,19 @@ export const TaskContainer = styled.section`
   border-radius: 0.5rem;
 
   div {
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 1rem;
+
+    .iconDrop {
+      cursor: grab;
+
+      &:active {
+        cursor: grabbing;
+      }
+    }
 
     p {
       font-size: 0.875rem;

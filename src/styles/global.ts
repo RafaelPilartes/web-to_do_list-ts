@@ -22,6 +22,9 @@ export const GlobalStyle = createGlobalStyle`
   button {
     cursor: pointer;
   }
+  li{
+    list-style: none;
+  }
   a {
     text-decoration: none;
   }

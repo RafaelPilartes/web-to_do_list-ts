@@ -44,7 +44,14 @@ export const TasksListContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 1rem;
+
+  .sortableContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+  }
 
   .empty {
     margin-top: 4rem;

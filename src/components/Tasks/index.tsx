@@ -1,4 +1,10 @@
 import { TbClipboardText } from 'react-icons/tb'
+import {
+  arrayMove,
+  SortableContainer,
+  SortableElement,
+  SortableHandle
+} from 'react-sortable-hoc'
 
 import {
   TasksContainer,
@@ -10,14 +16,23 @@ import todoLogo from '../../assets/todoLogo.svg'
 import Task from '../Task'
 import { useTask } from '../../hooks/useTask'
 import { useTheme } from 'styled-components'
+import { useState } from 'react'
 
 function Tasks() {
-  const { tasks, taskQuantity, completedTaskQuantity } = useTask()
+  const { tasks, taskQuantity, completedTaskQuantity, onSortEnd } = useTask()
   const { colors } = useTheme()
 
-  const listingTask = tasks.map((item, index) => {
-    return <Task key={index} task={item} />
+  const SortableList = SortableContainer(({ children }: any) => {
+    return <div className="sortableContainer">{children}</div>
   })
+
+  const SortableItem = SortableElement(({ value, index }: any) => (
+    <Task key={index} task={value} />
+  ))
+
+  const listItems = tasks.map((value, index) => (
+    <SortableItem key={`item-${value}`} index={index} value={value} />
+  ))
 
   return (
     <TasksContainer>
@@ -37,7 +52,9 @@ function Tasks() {
 
       <TasksListContainer>
         {taskQuantity !== 0 ? (
-          listingTask
+          <SortableList onSortEnd={onSortEnd} useDragHandle>
+            {listItems}
+          </SortableList>
         ) : (
           <section className="empty">
             <TbClipboardText size={50} color={colors['gray-300']} />

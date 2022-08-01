@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from 'react'
+import { arrayMove } from 'react-sortable-hoc'
 
 import { v4 as uuid } from 'uuid'
 
@@ -15,6 +16,7 @@ interface TaskContextType {
   addTask: (task: TaskForm) => void
   deleteTask: (task: string) => void
   toggleTaskIsCompledById: (task: string) => void
+  onSortEnd: (task: any) => void
 }
 
 interface TaskFormProps {
@@ -81,6 +83,11 @@ export function TaskContextProvider({ children }: IChildren) {
     setTaskAndSave(newTasks)
   }
 
+  const onSortEnd = (e: any) => {
+    const newTodos = arrayMove(tasks, e.oldIndex, e.newIndex)
+    setTaskAndSave(newTodos)
+  }
+
   useEffect(() => {
     loadSaveTask()
   }, [])
@@ -94,7 +101,8 @@ export function TaskContextProvider({ children }: IChildren) {
         completedTaskQuantity,
         addTask,
         deleteTask,
-        toggleTaskIsCompledById
+        toggleTaskIsCompledById,
+        onSortEnd
       }}
     >
       {children}
