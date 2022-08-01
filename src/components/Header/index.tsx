@@ -1,20 +1,22 @@
-import { useState, KeyboardEvent } from 'react'
+import { useState, KeyboardEvent, useEffect, useRef } from 'react'
+
 import { AiOutlinePlusCircle } from 'react-icons/ai'
 
 import { HeaderContainer, NewTaskFormContainer } from './styles'
 import todoLogo from '../../assets/todoLogo.svg'
 import { useTask } from '../../hooks/useTask'
-import { TaskProps } from '../../interface/ITask'
+
+interface TaskFormProps {
+  title: string
+  description: string
+}
 
 function Header() {
   const { addTask } = useTask()
 
-  const [formTask, setFormTask] = useState<TaskProps>({
-    id: '',
+  const [formTask, setFormTask] = useState<TaskFormProps>({
     title: '',
-    description: '',
-    isCompleted: false,
-    date: 1659195528
+    description: ''
   })
 
   function handleKeyUp(event: KeyboardEvent) {
@@ -46,6 +48,8 @@ function Header() {
       })
     }
   }
+
+  useEffect(() => {}, [])
 
   return (
     <HeaderContainer>

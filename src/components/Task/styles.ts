@@ -23,6 +23,11 @@ export const TaskContainer = styled.section`
       line-height: 1.18rem;
       color: ${({ theme }) => theme.colors['gray-100']};
     }
+
+    .textCompleted {
+      color: ${({ theme }) => theme.colors['gray-300']};
+      text-decoration: line-through;
+    }
   }
 `
 export const CheckContainer = styled.button`

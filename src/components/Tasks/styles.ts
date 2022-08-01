@@ -45,4 +45,23 @@ export const TasksListContainer = styled.div`
   align-items: center;
   flex-direction: column;
   gap: 1rem;
+
+  .empty {
+    margin-top: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+
+    color: ${({ theme }) => theme.colors['gray-300']};
+    align-items: center;
+
+    svg {
+      opacity: 0.3;
+    }
+    p {
+      font-weight: 700;
+    }
+  }
 `
